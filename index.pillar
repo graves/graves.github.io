@@ -1,6 +1,3 @@
-!My First book
-
-
-${inputFile:path=Chapters/Chapter1/covid-19-SIR-model.pillar}$
+${inputFile:path=posts/covid-19-SIR-model.pillar}$
 
 
