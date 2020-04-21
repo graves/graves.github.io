@@ -1,0 +1,442 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pretty Good Software Engineer</title>
+        
+        <meta name="robots" content="noindex" />
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="home.html">Home</a></li><li class="chapter-item expanded "><a href="covid-19-SIR-model.html"><strong aria-hidden="true">1.</strong> Modeling the Transmission of Covid-19 with Smalltalk</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Pretty Good Software Engineer</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#thomas-gentry" id="thomas-gentry">Thomas Gentry</a></h1>
+<h3><a class="header" href="#polyglot-princess" id="polyglot-princess">Polyglot Princess</a></h3>
+<p>Hello internet. I am a lifelong polyglot Software Engineer residing on the east coast of the United States of America. I'm currently interested in the intersection of data science, class politics, journalism and using Natural Language Processing to explore the resulting dynamics. I remain forever fascinated by design patterns, effective documentation, open source, novel languages, and the <a href="https://www.alchemistowl.org/pocorgtfo/">neighborly exchange of ideas</a>. I'm at my happiest cuddled up with a cup a coffee and a book, actualizing abstract concepts via friendly debate, or writing <a href="https://www.rust-lang.org/">Rust</a>, <a href="https://elixir-lang.org/">Elixir</a>, <a href="https://pharo.org/">Smalltalk</a>, and <a href="https://elm-lang.org/">Elm</a> torwards some kind of disjointed and barely out of reach purpose.</p>
+<h3><a class="header" href="#links" id="links">Links</a></h3>
+<ul>
+<li><a href="https://github.com/graves">Github</a></li>
+<li><a href="https://twitter.com/dqt">Twitter</a></li>
+<li><a href="https://graves.github.io">Website</a></li>
+<li><a href="https://drive.google.com/open?id=17dZnUCIKSPTPgez-NTPvlmXi79j_QCVQ">Résumé</a></li>
+</ul>
+<h3><a class="header" href="#posts" id="posts">Posts</a></h3>
+<ul>
+<li><a href="/covid-19-SIR-model.html">Modeling the Transmission of Covid-19 with Smalltalk</a></li>
+</ul>
+<h1><a class="header" href="#modeling-the-transmission-rate-of-covid-19-with-sir-in-smalltalk" id="modeling-the-transmission-rate-of-covid-19-with-sir-in-smalltalk">Modeling the Transmission Rate of COVID-19 with SIR in Smalltalk</a></h1>
+<h2><a class="header" href="#using-glamorous-toolkit-polymath-and-roassal2-and-ordinary-differential-equations" id="using-glamorous-toolkit-polymath-and-roassal2-and-ordinary-differential-equations">Using Glamorous Toolkit, PolyMath and Roassal2 and Ordinary Differential Equations</a></h2>
+<p>From <a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model">Wikipedia</a>:</p>
+<blockquote>
+<p>The SIR model is one of the simplest compartmental models, and many models are derivatives of this basic form. The model consists of three compartments: S for the number of susceptible, I for the number of infectious, and R for the number of recovered or deceased (or immune) individuals. This model is reasonably predictive[citation needed] for infectious diseases that are transmitted from human to human, and where recovery confers lasting resistance, such as measles, mumps and rubella.</p>
+</blockquote>
+<blockquote>
+<p>These variables (S, I, and R) represent the number of people in each compartment at a particular time. To represent that the number of susceptible, infected and recovered individuals may vary over time (even if the total population size remains constant), we make the precise numbers a function of t (time): S(t), I(t) and R(t). For a specific disease in a specific population, these functions may be worked out in order to predict possible outbreaks and bring them under control. </p>
+</blockquote>
+<p>Lucky for us the <a href="https://github.com/PolyMathOrg/PolyMath/">PolyMath</a> library contains everything we need to start solving Ordinary Differential Equations and even includes a <a href="https://github.com/PolyMathOrg/PolyMath/wiki/Quick-start-to-ODE">Tutorial</a> on working with the SIR model.</p>
+<p>From the wiki:</p>
+<pre><code class="language-smalltalk">|solver state system dt beta gamma values stepper diag|
+
+dt := 1.0.
+beta := 0.01.
+gamma := 0.1.
+
+system := PMExplicitSystem block: [ :x :t| |c|
+	 c := Array new: 3.
+	 c at: 1 put: (beta negated) * (x at: 1) * (x at: 2).
+	 c at: 2 put: (beta * (x at: 1) * (x at: 2)) - (gamma * (x at: 2)).
+	 c at: 3 put: gamma * (x at: 2).
+	 c
+	 ].
+
+stepper := PMRungeKuttaStepper onSystem: system.
+solver := (PMExplicitSolver new) stepper: stepper; system: system; dt: dt.
+state := #(99 1 0).
+values := (0.0 to: 200.0 by: dt) collect: [ :t| state := stepper doStep: state 
+                                                          time: t stepSize: dt ].
+</code></pre>
+<p>In order to begin using this code to create our own model we must first understand the <code>dt</code> , <code>beta</code> and <code>gamma</code> variables.</p>
+<ul>
+<li><code>dt</code> is a measure of time and in our model we'll use <code>1.0</code> so that each step represents <code>1 day</code>. </li>
+<li><code>beta</code> is the <strong>transmission rate</strong>. We'll discuss this further in the following section.</li>
+<li><code>gamma</code> is the <strong>recovery rate</strong>. We'll discuss this further in the following section.</li>
+</ul>
+<h3><a class="header" href="#the-sir-model" id="the-sir-model">The SIR Model</a></h3>
+<p>I found the best explanations of the SIR model to be this <a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model">Wikipedia</a> entry and the documentation of the R library <a href="https://cran.r-project.org/web/packages/shinySIR/vignettes/Vignette.html">ShinySIR</a>.</p>
+<p>From <code>ShinySIR</code>:</p>
+<blockquote>
+<p>In the simple SIR model (without births or deaths), susceptible individuals (S) become infected and move into the infected class (I). After some period of time, infected individuals recover and move into the recovered (or immune) class (R). Once immune, they remain so for life (i.e. they do not leave the recovered class). The corresponding equations are given by:</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>\( \frac{dS}{dt} = - \beta {S}{I} \)</li>
+<li>\( \frac{dI}{dt} = \beta {S}{I} - \gamma I \)</li>
+<li>\( \frac{dR}{dt} =  \gamma I \)</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>where <code>S</code>,<code>I</code>, and <code>R</code>, are the numbers of susceptible, infected, and recovered individuals in the population. Suppose the unit of time we are considering is days, then</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>β is the transmission rate and βSI represents the number of susceptible individuals that become infected per day;</li>
+<li>γ is the recovery rate and γI is the number of infected individuals that recover per day;</li>
+<li>1/γ is the infectious period i.e. the average duration of time an individual remains infected.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>An important quantity of any disease model is the the reproductive number, R0, which represents the average number of secondary infections generated from one infectious individual in a completely susceptible population. For the SIR model,</p>
+</blockquote>
+<blockquote>
+<p>\( R_0 = \beta N / \gamma, \)</p>
+</blockquote>
+<blockquote>
+<p>where \( N = S + I + R \) is the total (constant) population size. Since R0 and the infectious period are more intuitive parameters, we use these as inputs for the built-in SIR model. We can then calculate β as:</p>
+</blockquote>
+<blockquote>
+<p>\( \beta = R_0 \gamma / N. \)</p>
+</blockquote>
+<p>It's important to note that:</p>
+<ul>
+<li>\( \beta \) is the mathematical notation for <code>beta</code>.</li>
+<li>\( \gamma \) is the mathematical notation for <code>gamma</code>.</li>
+</ul>
+<p>In order to calculate the <code>beta</code> parameter I source \( R_0 \) from <a href="https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-transmissibility-25-01-2020.pdf">Report 3: Transmissibility of 2019-nCoV</a> as <code>2.6</code>. This means that on average each infected person will infect 2.6 others. According to <a href="https://www.who.int/bulletin/online_first/20-255695.pdf">CoronaTracker: World-wide COVID-19 Outbreak Data Analysis and Prediction</a> the <strong>average duration of recovery</strong> is <code>7.5 days</code>.</p>
+<p>Given the average duration of recovery it's trivial to calculate our <code>gamma</code> value:</p>
+<p>\( \gamma = \frac{1}{D} \) </p>
+<p>where \( D \) is the <strong>average duration of recovery</strong>.</p>
+<pre><code class="language-smalltalk">| durationOfRecovery gamma |
+
+durationOfRecovery := 7.5.
+gamma := 1 / durationOfRecovery
+</code></pre>
+<p>Given  \( R_0 \), \( \gamma \) and \( N \) (the total population size) it's trivial to calculate our <code>beta</code> value:</p>
+<p>We'll start by setting <code>N</code> to the total population size of Florida. According to <a href="https://www.google.com/search?rlz=1C1CHBF_enUS880US880&amp;sxsrf=ALeKk03BpRO2jyob9fJfErotMEWyBndmDw%3A1586996207554&amp;ei=76OXXpmtIfKmggfIrJngDw&amp;q=population+of+florida&amp;oq=population+o&amp;gs_lcp=CgZwc3ktYWIQARgAMgQIIxAnMgIIADICCAAyAggAMgIIADIFCAAQgwEyAggAMgIIADICCAAyAggAOgQIABBHOgUIABCRAjoECAAQQ0owCBcSLDBnNDA1ZzMzMGcyMDZnMTY2ZzE4MmcxNTJnMTU2ZzE0OWcxODNnMTgzZzE4ShsIGBIXMGcxZzFnMWcxZzFnMWcxZzFnMWczZzRQ1Pc1WN-DNmDrjDZoAHAEeACAAc4CiAGfEJIBCDAuMTAuMC4ymAEAoAEBqgEHZ3dzLXdpeg&amp;sclient=psy-ab">Google</a> the population of Florida is <code>21.48 million</code>.</p>
+<pre><code class="language-smalltalk">| durationOfRecovery gamma populationSize r0 beta |
+
+durationOfRecovery := 7.5.
+gamma := 1 / durationOfRecovery.
+populationSize := 21480000.
+r0 := 2.6.
+
+beta := r0 * gamma / populationSize
+</code></pre>
+<p>We now have enough information to start simulating COVID-19 transmission across a population using SIR.</p>
+<h3><a class="header" href="#simulating-covid-19-transmission-in-florida" id="simulating-covid-19-transmission-in-florida">Simulating COVID-19 transmission in Florida</a></h3>
+<p>Let's plug the information we have into the ODE tutorial from PolyMath.</p>
+<pre><code class="language-smalltalk">| dt durationOfRecovery gamma populationSize r0 beta solver state system values stepper |
+
+dt := 1.0.
+durationOfRecovery := 7.5.
+gamma := 1 / durationOfRecovery.
+populationSize := 21480000.
+r0 := 2.6.
+beta := r0 * gamma / populationSize.
+
+system := PMExplicitSystem block: [ :x :t| |c|
+	 c := Array new: 3.
+	 c at: 1 put: (beta negated) * (x at: 1) * (x at: 2).
+	 c at: 2 put: (beta * (x at: 1) * (x at: 2)) - (gamma * (x at: 2)).
+	 c at: 3 put: gamma * (x at: 2).
+	 c
+	 ].
+
+stepper := PMRungeKuttaStepper onSystem: system.
+solver := (PMExplicitSolver new) stepper: stepper; system: system; dt: dt.
+state := #(21480000 1 0).
+values := (0.0 to: 180.0 by: dt) collect: [ :t| state := stepper doStep: state 
+                                                          time: t stepSize: dt ].
+</code></pre>
+<p>This results in a multi-dimensional array indexed by days from the start of the spread to the 180th day (~6 months.) Each entry in the array is an array containing the Susceptible, Infected, and Recovered individuals. This information is much easier for humans to digest when visualized. For this we'll use the wonderful <a href="http://agilevisualization.com/">Roassal2</a>.</p>
+<p>Let's take the values from our... uhhhh... <em>values</em> array and build some Roassal Data Frames.</p>
+<pre><code class="language-smalltalk">| dt durationOfRecovery gamma populationSize r0 beta solver state system values stepper susceptible infected recovered b ds1 ds2 ds3 |
+
+dt := 1.0.
+durationOfRecovery := 7.5.
+gamma := 1 / durationOfRecovery.
+populationSize := 21480000.
+r0 := 2.6.
+beta := r0 * gamma / populationSize.
+
+system := PMExplicitSystem block: [ :x :t| |c|
+	 c := Array new: 3.
+	 c at: 1 put: (beta negated) * (x at: 1) * (x at: 2).
+	 c at: 2 put: (beta * (x at: 1) * (x at: 2)) - (gamma * (x at: 2)).
+	 c at: 3 put: gamma * (x at: 2).
+	 c
+	 ].
+
+stepper := PMRungeKuttaStepper onSystem: system.
+solver := (PMExplicitSolver new) stepper: stepper; system: system; dt: dt.
+state := #(21480000 1 0).
+values := (0.0 to: 180.0 by: dt) collect: [ :t| state := stepper doStep: state 
+                                                          time: t stepSize: dt ].
+
+susceptible := values collectWithIndex: [ :each :idx | Point x: idx y: (each at: 1) ].
+infected := values collectWithIndex: [ :each :idx | Point x: idx y: (each at: 2) ].
+recovered := values collectWithIndex: [ :each :idx | Point x: idx y: (each at: 3) ].
+
+b := RTGrapher new.
+
+ds1 := RTData new.
+ds1 label: 'Susceptible'.
+ds1 noDot.
+ds1 points: susceptible.
+ds1 connectColor: Color blue.
+ds1 y: [ :v | v y ].
+ds1 x: [ :v | v x ].
+ds1 interaction popup text: [ :v | ((v key y) asInteger) asString, ' susceptible on day ', (v key x asString)].
+b add: ds1.
+
+ds2 := RTData new.
+ds2 label: 'Infected'.
+ds2 noDot.
+ds2 points: infected.
+ds2 connectColor: Color red.
+ds2 y: [ :v | v y ].
+ds2 x: [ :v | v x ].
+ds2 interaction popup text: [ :v | ((v key y) asInteger) asString, ' infected on day ', (v key x asString)].
+b add: ds2.
+
+ds3 := RTData new.
+ds3 label: 'Recovered'.
+ds3 noDot.
+ds3 points: recovered.
+ds3 connectColor: Color green.
+
+ds3 y: [ :v | v y ].
+ds3 x: [ :v | v x ].
+ds3  interaction popup text: [ :v | ((v key y) asInteger) asString, ' recovered on day ', (v key x asString)].
+b add: ds3.
+
+b addDecorator: (RTCursorFollower new color: Color gray).
+b axisX title: 'Days'; noDecimal.
+b axisY title: 'Population'; noDecimal.
+b legend right.
+
+b build view canvas buildMorph extent: 1000@500; exportAsPNG.
+</code></pre>
+<p><img src="https://i.imgur.com/6V1lpix.png" alt="Florida COVID-19 transmission" /></p>
+<p>As you can see, this lays out our data in an easily digestable fashion. It shows the peak of the infections happening on <strong>day 84</strong> with <strong>5,143,437 individuals infected</strong>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="roassal.js"></script>
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            MathJax.Hub.Register.StartupHook('End', function() {
+                window.setTimeout(window.print, 100);
+            });
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
