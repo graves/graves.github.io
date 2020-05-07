@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js coal">
+<html lang="en" class="sidebar-visible no-js ayu">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -39,7 +39,7 @@
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "coal" : "coal";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "ayu";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -65,7 +65,7 @@
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
-            html.classList.remove('coal')
+            html.classList.remove('ayu')
             html.classList.add(theme);
             html.classList.add('js');
         </script>
@@ -105,9 +105,9 @@
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
                         </ul>
                         
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
@@ -211,7 +211,7 @@ values := (0.0 to: 200.0 by: dt) collect: [ :t| state := stepper doStep: state
 </ul>
 </blockquote>
 <blockquote>
-<p>An important quantity of any disease model is the the reproductive number, R0, which represents the average number of secondary infections generated from one infectious individual in a completely susceptible population. For the SIR model,</p>
+<p>An important quantity of any disease model is the the reproductive number, \( R_0 \), which represents the average number of secondary infections generated from one infectious individual in a completely susceptible population. For the SIR model,</p>
 </blockquote>
 <blockquote>
 <p>\( R_0 = \beta N / \gamma, \)</p>
@@ -285,16 +285,16 @@ r0 := 2.6.
 beta := r0 * gamma / populationSize.
 
 system := PMExplicitSystem block: [ :x :t| |c|
-	 c := Array new: 3.
-	 c at: 1 put: (beta negated) * (x at: 1) * (x at: 2).
-	 c at: 2 put: (beta * (x at: 1) * (x at: 2)) - (gamma * (x at: 2)).
-	 c at: 3 put: gamma * (x at: 2).
-	 c
-	 ].
+     c := Array new: 3.
+     c at: 1 put: (beta negated) * (x at: 1) * (x at: 2).
+     c at: 2 put: (beta * (x at: 1) * (x at: 2)) - (gamma * (x at: 2)).
+     c at: 3 put: gamma * (x at: 2).
+     c
+     ].
 
 stepper := PMRungeKuttaStepper onSystem: system.
 solver := (PMExplicitSolver new) stepper: stepper; system: system; dt: dt.
-state := #(21480000 1 0).
+state := #(21480000 2 0).
 values := (0.0 to: 180.0 by: dt) collect: [ :t| state := stepper doStep: state 
                                                           time: t stepSize: dt ].
 
@@ -311,7 +311,8 @@ ds1 points: susceptible.
 ds1 connectColor: Color blue.
 ds1 y: [ :v | v y ].
 ds1 x: [ :v | v x ].
-ds1 interaction popup text: [ :v | ((v key y) asInteger) asString, ' susceptible on day ', (v key x asString)].
+ds1 interaction toggleDataset.
+ds1 interaction popup text: [ :v | ((v key y) asInteger) asString, ' susceptible on ', ('March 1, 2020' asDate  + v key x day) asDate asString].
 b add: ds1.
 
 ds2 := RTData new.
@@ -321,7 +322,8 @@ ds2 points: infected.
 ds2 connectColor: Color red.
 ds2 y: [ :v | v y ].
 ds2 x: [ :v | v x ].
-ds2 interaction popup text: [ :v | ((v key y) asInteger) asString, ' infected on day ', (v key x asString)].
+ds2 interaction toggleDataset.
+ds2 interaction popup text: [ :v | ((v key y) asInteger) asString, ' infected on ', ('March 1, 2020' asDate  + v key x day) asDate asString].
 b add: ds2.
 
 ds3 := RTData new.
@@ -329,21 +331,108 @@ ds3 label: 'Recovered'.
 ds3 noDot.
 ds3 points: recovered.
 ds3 connectColor: Color green.
-
 ds3 y: [ :v | v y ].
 ds3 x: [ :v | v x ].
-ds3  interaction popup text: [ :v | ((v key y) asInteger) asString, ' recovered on day ', (v key x asString)].
+ds3 interaction toggleDataset.
+ds3 interaction popup text: [ :v | ((v key y) asInteger) asString, ' recovered on  ', ('March 1, 2020' asDate  + v key x day) asDate asString].
 b add: ds3.
 
 b addDecorator: (RTCursorFollower new color: Color gray).
-b axisX title: 'Days'; noDecimal.
+b axisX
+		title: 'Date';
+		labelRotation: -30;
+		labelConversion: [ :v | ('March 1, 2020' asDate  + v day) asDate ].
+b axisY title: 'Population'; noDecimal.
+b legend right.
+
+b build view 
+</code></pre>
+<p><a href="./roassal/florida-covid-sir.html"><img src="https://i.imgur.com/6V1lpix.png" alt="Florida COVID-19 transmission" /></a></p>
+<p>As you can see, this lays out our data in an easily digestable fashion. It shows the peak of the infections happening on <strong>day 84</strong> with <strong>5,143,437 individuals infected</strong>.</p>
+<p>Our model is in no way precise and leaves out many factors such as the effects of social distancing, state measures to slow the spread, population density, age, etc. Even so, the peak infected rate seems quite high at over 5 million individuals while at the time of writing (<em>midnight April 24, 2020</em>) there are only 30,839 <a href="https://floridahealthcovid19.gov/">confirmed infected individuals in Florida</a>.</p>
+<p>Let's do a little investigating to see what the problem may be. We'll first change the Y-axis to our actual calendar date. The CDC <a href="https://www.clickorlando.com/health/2020/03/02/gov-desantis-declares-health-emergency-after-2-presumptive-positive-coronavirus-cases-found/">confirmed the first two COVID-19 cases in Florida</a> on March 1, 2020 so we'll change our Y-axis to start on March 1. The linked article also announces 2 initial cases so we'll change our starting state so that it repressents 2 infected individuals.</p>
+<p><code>state := #(21480000 2 0).</code></p>
+<p><img src="https://i.imgur.com/NY0aFUm.png" alt="Florida Estimated Infections on Todays date" /></p>
+<p>The graph interactions are, sadly, lost when I export the Roassal visualizations to an image or even the javascript representation but as you can see in the screenshot from my Pharo image the number of infected on today's date is <strong>297,236</strong> individuals. Why is it so high? It seems as though our model is off by about 267,000 people!</p>
+<p>We need to talk about testing. To date, the state of Florida has only tested 333,099 of it's 21.48 million inhabitants which is only 1.5 percent of it's population and, terrifyingly, of the 333,099 persons tested just over 9 percent tested positive for COVID-19. If we were to extrapolate that out to the total population then 1,988,663 people would currently test postive for the Corona virus. Extrapolating the ratio of infected to tested to the total population isn't going to give us an accurate estimation for a multitude of reasons but most notably because the 9% testing positive were presumably showing symptoms of the virus or are health care workers recently exposed to it. Nine percent of a total population seems quite high but <a href="https://www.cdc.gov/flu/about/keyfacts.htm">the CDC estimates that between 3-11% of the United States population are infected with the common flu each year</a> and with the revalations that <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7128959/">carriers of the virus may remain asymptomatic</a> the <strong>297,236</strong> infected to date that our model shows might not be as far off as it seems.</p>
+<p>Let's run our model on another population, one in which testing is more widely available and reporting presumably more accurate, New York City. First we do a little refactoring, DRYing up the code a bit by referencing the <code>populationSize</code> variable from the <code>state</code> array and changing the population size to match that of New York City according to <a href="https://www.google.com/search?rlz=1C1CHBF_enUS880US880&amp;sxsrf=ALeKk01k46J52vuE8Es82o5UG-vbUeWQAA%3A1588005306283&amp;ei=ugmnXrTlEKWMgge4g7O4Bg&amp;q=population+of+new+york+city&amp;oq=population+of+new+york+city&amp;gs_lcp=CgZwc3ktYWIQAzIECCMQJzICCAAyAggAMgIIADICCAAyAggAMgYIABAHEB4yAggAMgIIADICCAA6BAgAEEdQ9KpFWNW2RWCTuEVoAHACeAGAAbYCiAHxEJIBCDAuMTEuMS4xmAEAoAEBqgEHZ3dzLXdpeg&amp;sclient=psy-ab&amp;ved=0ahUKEwi0qrrhhInpAhUlhuAKHbjBDGcQ4dUDCAw&amp;uact=5">Google</a>. The <a href="https://www.wsj.com/articles/first-case-of-coronavirus-confirmed-in-new-york-state-11583111692">first reported case of Corona virus in New York City</a> was also March 1, 2020 so our X-axis remains unchanged.</p>
+<pre><code class="language-Smalltalk">| dt durationOfRecovery gamma populationSize r0 beta solver state system values stepper susceptible infected recovered b ds1 ds2 ds3 |
+
+dt := 1.0.
+durationOfRecovery := 7.5.
+gamma := 1 / durationOfRecovery.
+populationSize := 8399000.
+r0 := 2.6.
+beta := r0 * gamma / populationSize.
+
+system := PMExplicitSystem block: [ :x :t| |c|
+     c := Array new: 3.
+     c at: 1 put: (beta negated) * (x at: 1) * (x at: 2).
+     c at: 2 put: (beta * (x at: 1) * (x at: 2)) - (gamma * (x at: 2)).
+     c at: 3 put: gamma * (x at: 2).
+     c
+     ].
+
+stepper := PMRungeKuttaStepper onSystem: system.
+solver := (PMExplicitSolver new) stepper: stepper; system: system; dt: dt.
+state := { populationSize . 1 . 0 }.
+values := (0.0 to: 180.0 by: dt) collect: [ :t| state := stepper doStep: state 
+                                                          time: t stepSize: dt ].
+
+susceptible := values collectWithIndex: [ :each :idx | Point x: idx y: (each at: 1) ].
+infected := values collectWithIndex: [ :each :idx | Point x: idx y: (each at: 2) ].
+recovered := values collectWithIndex: [ :each :idx | Point x: idx y: (each at: 3) ].
+
+b := RTGrapher new.
+
+ds1 := RTData new.
+ds1 label: 'Susceptible'.
+ds1 noDot.
+ds1 points: susceptible.
+ds1 connectColor: Color blue.
+ds1 y: [ :v | v y ].
+ds1 x: [ :v | v x ].
+ds1 interaction toggleDataset.
+ds1 interaction popup text: [ :v | ((v key y) asInteger) asString, ' susceptible on ', ('March 1, 2020' asDate  + v key x day) asDate asString].
+b add: ds1.
+
+ds2 := RTData new.
+ds2 label: 'Infected'.
+ds2 noDot.
+ds2 points: infected.
+ds2 connectColor: Color red.
+ds2 y: [ :v | v y ].
+ds2 x: [ :v | v x ].
+ds2 interaction toggleDataset.
+ds2 interaction popup text: [ :v | ((v key y) asInteger) asString, ' infected on ', ('March 1, 2020' asDate  + v key x day) asDate asString].
+b add: ds2.
+
+ds3 := RTData new.
+ds3 label: 'Recovered'.
+ds3 noDot.
+ds3 points: recovered.
+ds3 connectColor: Color green.
+ds3 y: [ :v | v y ].
+ds3 x: [ :v | v x ].
+ds3 interaction toggleDataset.
+ds3 interaction popup text: [ :v | ((v key y) asInteger) asString, ' recovered on  ', ('March 1, 2020' asDate  + v key x day) asDate asString].
+b add: ds3.
+
+b addDecorator: (RTCursorFollower new color: Color gray).
+b axisX
+		title: '';
+		labelRotation: -30;
+		labelConversion: [ :v | ('March 1, 2020' asDate  + v day) asDate ].
 b axisY title: 'Population'; noDecimal.
 b legend right.
 
 b build view canvas buildMorph extent: 1000@500; exportAsPNG.
 </code></pre>
-<p><a href="./roassal/florida-covid-sir.html"><img src="https://i.imgur.com/6V1lpix.png" alt="Florida COVID-19 transmission" /></a></p>
-<p>As you can see, this lays out our data in an easily digestable fashion. It shows the peak of the infections happening on <strong>day 84</strong> with <strong>5,143,437 individuals infected</strong>.</p>
+<p><a href="./roassal/nyc-covid-sir.html"><img src="https://i.imgur.com/YiHVSiH.png" alt="New York City COVID-19 transmission" /></a></p>
+<p>To review the accuracy of our NYC model we first reference the <a href="https://www1.nyc.gov/site/doh/covid/covid-19-data.page">number of Corona virus cases in NYC</a> as of <em>April, 26, 2020</em> which is <strong>153,204</strong>. When we remove the Suscepible and Recovered lines and check the Infected on April, 26 we see our NYC model is much closer to reality with <strong>147,108</strong> infected individuals.</p>
+<p><img src="https://i.imgur.com/fzq2Wh2.png" alt="NYC Estimated Infections on Todays date" /></p>
+<p>Now seems like a good time to abstract our code into classes to make it easier for us to run models. A iive screencast is a great way to show how we can and turn our scripts into a collection of objects woring together to acheive our goals with the the added bonus of extending the package to fit more models.</p>
+<p>Screencast TBC.</p>
 
                     </main>
 
