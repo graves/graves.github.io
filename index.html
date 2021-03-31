@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js ayu">
+<html lang="en" class="sidebar-visible no-js coal">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -11,7 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
+        <link rel="shortcut icon" href="">
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
@@ -39,7 +39,7 @@
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "ayu";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "coal";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -65,7 +65,7 @@
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
-            html.classList.remove('ayu')
+            html.classList.remove('coal')
             html.classList.add(theme);
             html.classList.add('js');
         </script>
@@ -105,9 +105,9 @@
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal (default)</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
                         
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
@@ -150,17 +150,17 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#thomas-gentry" id="thomas-gentry">Thomas Gentry</a></h1>
-<h3><a class="header" href="#polyglot-princess" id="polyglot-princess">Polyglot Princess</a></h3>
+                        <h1 id="thomas-gentry"><a class="header" href="#thomas-gentry">Thomas Gentry</a></h1>
+<h3 id="polyglot-princess"><a class="header" href="#polyglot-princess">Polyglot Princess</a></h3>
 <p>Hello internet. I am a lifelong polyglot Software Engineer residing on the east coast of the United States of America. I'm currently interested in the intersection of data science, class politics, journalism and using Natural Language Processing to explore the resulting dynamics. I remain forever fascinated by design patterns, effective documentation, open source, novel languages, and the <a href="https://www.alchemistowl.org/pocorgtfo/">neighborly exchange of ideas</a>. I'm at my happiest cuddled up with a cup a coffee and a book, actualizing abstract concepts via friendly debate, or writing <a href="https://www.rust-lang.org/">Rust</a>, <a href="https://elixir-lang.org/">Elixir</a>, <a href="https://pharo.org/">Smalltalk</a>, and <a href="https://elm-lang.org/">Elm</a> torwards some kind of disjointed and barely out of reach purpose.</p>
-<h3><a class="header" href="#links" id="links">Links</a></h3>
+<h3 id="links"><a class="header" href="#links">Links</a></h3>
 <ul>
 <li><a href="https://github.com/graves">Github</a></li>
 <li><a href="https://twitter.com/dqt">Twitter</a></li>
 <li><a href="https://graves.github.io">Website</a></li>
-<li><a href="https://drive.google.com/open?id=1QVjbhomU7AX6y80nQ-QEslCUgRhAAE5B">Résumé</a></li>
+<li><a href="https://docs.google.com/document/d/1m2mlJrqunwiSBJt2pEojFw0-YSC9JGoziW1uUEVOvL8/edit?usp=sharing">Résumé</a></li>
 </ul>
-<h3><a class="header" href="#posts" id="posts">Posts</a></h3>
+<h3 id="posts"><a class="header" href="#posts">Posts</a></h3>
 <ul>
 <li><a href="/covid-19-SIR-model.html">Modeling the Transmission of Covid-19 with Smalltalk</a></li>
 </ul>
@@ -197,7 +197,7 @@
         
         <!-- Livereload script (if served using the cli tool) -->
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3001");
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
             socket.onmessage = function (event) {
                 if (event.data === "reload") {
                     socket.close();
@@ -215,10 +215,6 @@
 
         
         
-        
-        <script type="text/javascript">
-            window.playpen_copyable = true;
-        </script>
         
 
         
